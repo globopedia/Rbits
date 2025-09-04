@@ -42,7 +42,7 @@
   <div id="resultados"></div>
 
   <script>
-    const partidosURL = "https://globopedia.github.io/buscador-partidos/Encuentros_Huracan.csv?v=" + Date.now();
+    const partidosURL = "https://globopedia.github.io/buscador-partidos/raw/refs/heads/main/Encuentros_Huracan.csv?v=" + Date.now();
     let encuentros = [];
 
     const norm = (t) =>
