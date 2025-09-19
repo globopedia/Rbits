@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Clubes y Estadísticas</title>
+  <title>Árbitros</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@500&display=swap" rel="stylesheet">
   <style>
@@ -38,17 +38,17 @@
 </head>
 <body>
   <img src="https://globopedia.github.io/buscador-partidos/logo_globopedia.png" alt="Logo Huracán" class="logo" />
-  <h1>📜 Historiales</h1>
+  <h1>📜 Árbitros</h1>
   <div style="text-align:center;">
-    <label>Seleccionar club: </label>
+    <label>Seleccionar juez: </label>
     <select id="clubSelect"></select>
   </div>
   <div id="clubInfo" class="club-card" style="display:none;"></div>
 
   <script>
- const clubesURL = "https://globopedia.github.io/Rivales-Huracan/clubes.csv?v=" + Date.now();
+ const árbitroURL = "https://globopedia.github.io/Rbits/Rbits.csv?v=" + Date.now();
     const partidosURL = "https://globopedia.github.io/buscador-partidos/Encuentros_Huracan.csv?v=" + Date.now();
-    let clubes = [];
+    let árbitros = [];
     let encuentros = [];
 
     // Normalizaciones y utilidades
@@ -78,19 +78,11 @@
       fetch(clubesURL).then(r => { if(!r.ok) throw new Error("Clubes CSV no disponible"); return r.text(); }),
       fetch(partidosURL).then(r => { if(!r.ok) throw new Error("Partidos CSV no disponible"); return r.text(); })
     ])
-    .then(([csvClubes, csvPartidos]) => {
-      clubes = Papa.parse(csvClubes, { header:true, skipEmptyLines:true }).data.map(c => ({
+    .then(([csvRbits, csvPartidos]) => {
+      árbitros = Papa.parse(csvRbits, { header:true, skipEmptyLines:true }).data.map(c => ({
         id: (c.id ?? "").toString().trim(),
-        club: (c.Club ?? c.club ?? "").toString().trim(),
-        nombre: c.Nombre ?? c.nombre ?? "",
-        fundacion: c.Fundacion ?? c.fundacion ?? "",
-        direccion: c.Direccion ?? c.direccion ?? "",
-        web: c.Web ?? c.web ?? "",
-        colores: c.Colores ?? c.colores ?? "",
-        titulos: c.Titulos ?? c.titulos ?? "",
-        estadio: c.Estadio ?? c.estadio ?? "",
-        curiosidades: c.Curiosidades ?? c.curiosidades ?? "",
-        escudo: c.Escudo ?? c.escudo ?? ""
+        nombre: (c.Nombre ?? c.nombre ?? "").toString().trim(),
+        datos: c.Datos ?? c.datos ?? ""
       }));
       
       encuentros = Papa.parse(csvPartidos, { header:true, skipEmptyLines:true }).data.map(p => ({
@@ -116,7 +108,7 @@
       alert("No pude cargar los CSV. Revisá las URLs o el formato en la consola.");
     });
 
-    function llenarSelectClubes() {
+    function llenarSelectÁrbitros() {
       const sel = document.getElementById("clubSelect");
       sel.innerHTML = "<option value=''>-- Seleccionar --</option>";
       clubes.forEach(club => {
