@@ -78,10 +78,10 @@
       fetch(partidosURL).then(r => r.text())
     ])
     .then(([csvRbits, csvPartidos]) => {
-      arbitros = Papa.parse(csvRbits, { header:true, skipEmptyLines:true }).data.map(c => ({
-        id: (c.id ?? "").toString().trim(),
-        nombre: (c.Nombre ?? c.nombre ?? "").toString().trim(),
-        datos: c.Datos ?? c.datos ?? ""
+arbitros = Papa.parse(csvRbits, { header:true, skipEmptyLines:true }).data.map(c => ({
+  id: (c.ID ?? "").toString().trim(),
+  nombre: (c["Árbitro"] ?? "").toString().trim(),
+  datos: (c.Datos ?? "").toString().trim()
       }));
       
       encuentros = Papa.parse(csvPartidos, { header:true, skipEmptyLines:true }).data.map(p => ({
