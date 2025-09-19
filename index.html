@@ -114,7 +114,7 @@ arbitros = Papa.parse(csvRbits, { header:true, skipEmptyLines:true }).data.map(c
         if (a.id && a.nombre) {
           const opt = document.createElement("option");
           opt.value = a.id;
-          opt.textContent = a.nombre;
+         opt.textContent = invertirNombre(a.nombre);
           sel.appendChild(opt);
         }
       });
@@ -241,6 +241,20 @@ arbitros = Papa.parse(csvRbits, { header:true, skipEmptyLines:true }).data.map(c
         e.target.classList.toggle("abierto");
       }
     });
+
+    function invertirNombre(nombre) {
+  if (!nombre) return "";
+  // Separa paréntesis aparte
+  const match = nombre.match(/^(.*?)\s*\((.*?)\)$/);
+  let base = nombre, extra = "";
+  if (match) { base = match[1]; extra = " (" + match[2] + ")"; }
+
+  const partes = base.trim().split(" ");
+  if (partes.length < 2) return nombre;
+  const apellido = partes.pop();
+  const nombreSolo = partes.join(" ");
+  return apellido + ", " + nombreSolo + extra;
+}
   </script>
 </body>
 </html>
