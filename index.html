@@ -73,9 +73,9 @@
     const CONDICIONES = ["Local","Neutral","Visitante"];
     const SITUACIONES = ["Victoria","Empate","Derrota"];
 
-    // Cargar ambos CSVs (clubes y encuentros)
+    // Cargar ambos CSVs (árbitros y encuentros)
     Promise.all([
-      fetch(clubesURL).then(r => { if(!r.ok) throw new Error("Clubes CSV no disponible"); return r.text(); }),
+      fetch(árbitrosURL).then(r => { if(!r.ok) throw new Error("Rbits CSV no disponible"); return r.text(); }),
       fetch(partidosURL).then(r => { if(!r.ok) throw new Error("Partidos CSV no disponible"); return r.text(); })
     ])
     .then(([csvRbits, csvPartidos]) => {
@@ -101,7 +101,7 @@
         Incidencias: (p.Incidencias ?? "").trim()
       }));
 
-      llenarSelectClubes();
+      llenarSelectÁrbitros();
     })
     .catch(err => {
       console.error("Error cargando CSVs:", err);
@@ -111,8 +111,8 @@
     function llenarSelectÁrbitros() {
       const sel = document.getElementById("clubSelect");
       sel.innerHTML = "<option value=''>-- Seleccionar --</option>";
-      clubes.forEach(club => {
-        if (club.id && club.club) {
+      rbits.forEach(árbitro => {
+        if (nombre.id && nombre.nombre) {
           const opt = document.createElement("option");
           opt.value = club.id;
           opt.textContent = club.club;
@@ -122,8 +122,8 @@
       sel.addEventListener("change", mostrarClub);
     }
  function mostrarClub() {
-      const clubId = document.getElementById("clubSelect").value;
-      const club = clubes.find(c => (c.id||"").trim() === (clubId||"").trim());
+      const árbitroId = document.getElementById("clubSelect").value;
+      const árbitro = árbitros.find(c => (c.id||"").trim() === (nombreId||"").trim());
       if (!club) {
         alert("No se encontró el club seleccionado");
         return;
@@ -298,8 +298,8 @@
     });
 
     function getEscudo(nombreClub) {
-      const c = clubes.find(cl => norm(cl.club) === norm(nombreClub));
-      return c ? c.escudo : "";
+      const c = rbits.find(cl => norm(cl.nombre) === norm(nombreClub));
+      return c ? c.foto : "";
     }
 
     function renderIncidencias(texto) {
