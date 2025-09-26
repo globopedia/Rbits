@@ -37,7 +37,7 @@
   </style>
 </head>
 <body>
-  <img src="https://globopedia.github.io/buscador-partidos/logo_globopedia.png" alt="Logo Huracán" class="logo" />
+  <img src="https://globopedia.github.io/Artids/logo_globopedia.png" alt="Logo Huracán" class="logo" />
   <h1>📜 Árbitros</h1>
 
   <div style="text-align:center;">
@@ -50,7 +50,7 @@
   <script>
     // URLs (cache buster)
     const arbitrosURL = "https://globopedia.github.io/Rbits/Rbits.csv?v=" + Date.now();
-    const partidosURL = "https://globopedia.github.io/buscador-partidos/Encuentros_Huracan.csv?v=" + Date.now();
+    const partidosURL = "https://globopedia.github.io/Artids/Encuentros_Huracan.csv?v=" + Date.now();
 
     let arbitros = [];
     let encuentros = [];
@@ -308,14 +308,14 @@
       // Primero intentamos con encoding (preserva acentos si los archivos están así)
       try {
         const file = encodeURIComponent(nombreClub.trim()) + ".png";
-        return "https://globopedia.github.io/buscador-partidos/escudos/" + file;
+        return "https://globopedia.github.io/Artids/escudos/" + file;
       } catch (err) {
         // Fallback: eliminar acentos y espacios
         const fileName = nombreClub
           .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
           .replace(/\./g, "")
           .replace(/\s+/g, "") + ".png";
-        return "https://globopedia.github.io/buscador-partidos/escudos/" + fileName;
+        return "https://globopedia.github.io/Artids/escudos/" + fileName;
       }
     }
 
@@ -336,7 +336,7 @@
         .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
         .replace(/\./g, "")
         .replace(/\s+/g, "") + ".png";
-      return "https://globopedia.github.io/buscador-partidos/Estadios/" + fileName;
+      return "https://globopedia.github.io/Artids/Estadios/" + fileName;
     }
 
     // Intenta mostrar logo del torneo según una lista conocida
@@ -360,7 +360,7 @@
       for (const t of torneosDisponibles) {
         if (texto.includes(t.toLowerCase())) {
           const fileName = encodeURIComponent(t) + ".png";
-          return `<img src="https://globopedia.github.io/buscador-partidos/Torneos/${fileName}" alt="${t}" style="max-height:40px; display:block; margin:4px auto;">`;
+          return `<img src="https://globopedia.github.io/Artids/Torneos/${fileName}" alt="${t}" style="max-height:40px; display:block; margin:4px auto;">`;
         }
       }
       return "";
