@@ -1,4 +1,4 @@
-ID,Árbitro,Datos
+ID,Árbitro,Datos,Foto
 Abal,Diego Abal,sin datos
 Aquino,Éber Aquino (Paraguay),sin datos
 Aragón,Augusto Aragón (Ecuador),sin datos
@@ -20,7 +20,7 @@ Echenique,Fernando Echenique,"árbitro el clásico con San Lorenzo de 2021, en e
 Espinoza,Fernando Espinoza,"arbitró el clasico con San Lorenzo en 2019, cuando se les ganó 2-0 en el Ducó."
 Falcón Pérez,Yael Falcón Pérez,En la Copa América 2024 dirigió Costa Rica-Paraguay.
 Favale,Gabriel Favale,"arbitró en 2011 la caída 0-3 con San Lorenzo, cuando se abrió el partido a partir de la expulsión de Facundo Quiroga y el penal otorgado a los locales."
-Fernández,Anahí Fernández (Uruguay),sin datos
+Fernández,Anahí Fernández (Uruguay),sin datos,https://blogger.googleusercontent.com/img/a/AVvXsEj1ugHdwTaHj2-wRcrY-Po9a3_1ssqa0uuxGS0HroWoERi5PklEaLyXIuXHNzQ_CJojyKutu6Y0ujXvDYxx7z9pNm53Y9O7iWmAR-Iaidz5chrLkWc0WQUyKfAXe4Oq-1Um2HVgCNba42_E5IuAP8MmdMitUTIqFIcNtlKe_gVuwvofOYm3eF2wXE2vHNEb=w79-h110
 Garay,Cristian Garay (Chile),Dirigió en la Copa América 2024 a Ecuador-Jamaica.
 Gariano,Andrés Gariano,Carlos Andrés Gariano
 Gilabert,Leonardo Gilabert (Chile),sin datos
@@ -58,3 +58,4 @@ Trucco,Silvio Trucco,sin datos
 Vargas,Gery Vargas (Bolivia),sin datos
 Vigliano,Mauro Vigliano,sin datos
 Zunino,Sebastián Zunino,sin datos
+
