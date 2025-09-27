@@ -238,13 +238,9 @@
                   </div>
                   <div style="margin-top:6px;"><b>${p.Club}:</b> ${p.Rival}</div>
                   <div><b>Huracán:</b> ${p.Huracán}</div>
-                  <div style="margin-top:6px;">
-                    ${ p.Estadio && getEstadioImage(p.Estadio)
-                      ? `<img src="${getEstadioImage(p.Estadio)}" alt="${p.Estadio}" style="max-height:40px;">`
-                      : `<b>Incidencias:</b>` }
-                    ${renderIncidencias(p.Incidencias)}
+                 ${ p.Foto ? `<div style="margin:6px 0;"><img src="${p.Foto}" alt="Incidencias" style="max-width:100%;border-radius:8px;"></div>` : "" }
+                  <div>${renderIncidencias(p.Incidencias)}</div>
                   </div>
-                </div>
               `;
             } else {
               // Huracán local (o neutral) — Huracán a la izquierda / primero
@@ -267,11 +263,8 @@
                   <div style="margin-top:6px;"><b>Huracán:</b> ${p.Huracán}</div>
                   <div><b>${p.Club}:</b> ${p.Rival}</div>
                   <div style="margin-top:6px;">
-                    ${ p.Estadio && getEstadioImage(p.Estadio)
-                      ? `<img src="${getEstadioImage(p.Estadio)}" alt="${p.Estadio}" style="max-height:40px;">`
-                      : `<b>Incidencias:</b>` }
-                    ${renderIncidencias(p.Incidencias)}
-                  </div>
+                 ${ p.Foto ? `<div style="margin:6px 0;"><img src="${p.Foto}" alt="Incidencias" style="max-width:100%;border-radius:8px;"></div>` : "" }
+                  <div>${renderIncidencias(p.Incidencias)}</div>
                 </div>
               `;
             }
