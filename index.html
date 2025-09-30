@@ -361,15 +361,14 @@
     }
    });
     
-    function invertirNombre(nombre) {
+function invertirNombre(nombre) {
   if (!nombre) return "";
-  // Separa paréntesis aparte
   const match = nombre.match(/^(.*?)\s*\((.*?)\)$/);
   let base = nombre, extra = "";
   if (match) { base = match[1]; extra = " (" + match[2] + ")"; }
 
   const partes = base.trim().split(" ");
-  if (partes.length < 2) return nombre;
+  if (partes.length < 2) return base + extra;
   const apellido = partes.pop();
   const nombreSolo = partes.join(" ");
   return apellido + ", " + nombreSolo + extra;
