@@ -361,18 +361,35 @@
     }
 
     // Invierte "Nombre Apellido (Extra)" -> "Apellido, Nombre (Extra)"
-    function invertirNombre(nombre) {
-      if (!nombre) return "";
-      const match = nombre.match(/^(.*?)\s*\((.*?)\)$/);
-      let base = nombre, extra = "";
-      if (match) { base = match[1]; extra = " (" + match[2] + ")"; }
-      const partes = base.trim().split(" ");
-      if (partes.length < 2) return nombre;
-      const apellido = partes.pop();
-      const nombreSolo = partes.join(" ");
-      return apellido + ", " + nombreSolo + extra;
-    }
+function InvertirNombre(nombre) {
+  const partes = nombre.trim().split(" ");
+  if (partes.length < 2) return nombre;
 
+  if (partes.length === 2) {
+    // Caso simple: Nombre + Apellido
+    const [nombre1, apellido] = partes;
+    return apellido + ", " + nombre1;
+  }
+
+  // Lista de conectores/apellidos compuestos en minúscula
+  const conectores = ["de", "del", "de la", "de los", "la", "las", "los", "san", "santa"];
+
+  // Unir las últimas palabras y ver si forman parte de un apellido compuesto
+  let i = partes.length - 1;
+  let apellido = partes[i];
+  while (i > 0) {
+    const posible = partes[i - 1].toLowerCase();
+    if (conectores.includes(posible)) {
+      apellido = partes[i - 1] + " " + apellido;
+      i--;
+    } else {
+      break;
+    }
+  }
+
+  const nombres = partes.slice(0, i).join(" ");
+  return apellido + ", " + nombres;
+}
   </script>
 </body>
 </html>
