@@ -52,7 +52,7 @@
     const arbitrosURL = "https://globopedia.github.io/Rbits/Rbits.csv?v=" + Date.now();
     const partidosURL = "https://globopedia.github.io/Artids/Artids2000.csv?v=" + Date.now();
     const partidosURL2 = "https://globopedia.github.io/Artids/Encuentros_Huracan.csv?v=" + Date.now();
-
+    
     let arbitros = [];
     let encuentros = [];
 
@@ -74,11 +74,11 @@
 
     // Carga de CSVs
 Promise.all([
-  fetch(clubesURL).then(r => { if(!r.ok) throw new Error("Clubes CSV no disponible"); return r.text(); }),
+  fetch(arbitrosURL).then(r => { if(!r.ok) throw new Error("Árbitros CSV no disponible"); return r.text(); }),
   fetch(partidosURL).then(r => { if(!r.ok) throw new Error("Partidos CSV 1 no disponible"); return r.text(); }),
   fetch(partidosURL2).then(r => { if(!r.ok) throw new Error("Partidos CSV 2 no disponible"); return r.text(); })
 ])
-.then(([csvClubes, csvPartidos1, csvPartidos2]) => {
+.then(([csvRbits, csvPartidos1, csvPartidos2]) => {
       // Ajustar columnas según tu CSV: ID, Árbitro, Datos (tal como me pasaste)
       arbitros = Papa.parse(csvRbits, { header:true, skipEmptyLines:true }).data.map(c => ({
         id: (c.ID ?? "").toString().trim(),
