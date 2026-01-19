@@ -50,7 +50,8 @@
   <script>
     // URLs (cache buster)
     const arbitrosURL = "https://globopedia.github.io/Rbits/Rbits.csv?v=" + Date.now();
-    const partidosURL = "https://globopedia.github.io/Artids/Encuentros_Huracan.csv?v=" + Date.now();
+    const partidosURL = "https://globopedia.github.io/Artids/Artids2000.csv?v=" + Date.now();
+    const partidosURL2 = "https://globopedia.github.io/Artids/Encuentros_Huracan.csv?v=" + Date.now();
 
     let arbitros = [];
     let encuentros = [];
@@ -72,11 +73,12 @@
     const SITUACIONES = ["Victoria","Empate","Derrota"];
 
     // Carga de CSVs
-    Promise.all([
-      fetch(arbitrosURL).then(r => { if(!r.ok) throw new Error("Rbits CSV no disponible"); return r.text(); }),
-      fetch(partidosURL).then(r => { if(!r.ok) throw new Error("Partidos CSV no disponible"); return r.text(); })
-    ])
-    .then(([csvRbits, csvPartidos]) => {
+Promise.all([
+  fetch(clubesURL).then(r => { if(!r.ok) throw new Error("Clubes CSV no disponible"); return r.text(); }),
+  fetch(partidosURL).then(r => { if(!r.ok) throw new Error("Partidos CSV 1 no disponible"); return r.text(); }),
+  fetch(partidosURL2).then(r => { if(!r.ok) throw new Error("Partidos CSV 2 no disponible"); return r.text(); })
+])
+.then(([csvClubes, csvPartidos1, csvPartidos2]) => {
       // Ajustar columnas según tu CSV: ID, Árbitro, Datos (tal como me pasaste)
       arbitros = Papa.parse(csvRbits, { header:true, skipEmptyLines:true }).data.map(c => ({
         id: (c.ID ?? "").toString().trim(),
@@ -85,7 +87,10 @@
         foto: (c.Foto ?? c.foto ?? "").toString().trim()
       }));
 
-      encuentros = Papa.parse(csvPartidos, { header:true, skipEmptyLines:true }).data.map(p => ({
+     const partidos1 = Papa.parse(csvPartidos1, { header:true, skipEmptyLines:true }).data;
+const partidos2 = Papa.parse(csvPartidos2, { header:true, skipEmptyLines:true }).data;
+
+encuentros = [...partidos1, ...partidos2].map(p => ({
         Fecha: (p.Fecha ?? "").trim(),
         Técnico: (p.Técnico ?? "").trim(),
         Condición: (p.Condición ?? "").trim(),
